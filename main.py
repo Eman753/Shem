@@ -4,6 +4,7 @@ from MATHLAB import *
 
 version = "0.02"
 
+shadow = ""
 
 def shem():
   z = 0
@@ -17,7 +18,7 @@ def shem():
     if a == "halt":
       z = 1
     if a == "passwd":
-      passwd(z)
+      passwd()
       shadow = z
       print(shadow)
     if a == "lock":
@@ -33,7 +34,7 @@ def shem():
       mathlab()      
 
 
-def passwd(z):
+def passwd():
   p = str(input("New passwd:"))
   pc = str(input("Again:"))
   if p != pc:
@@ -46,11 +47,12 @@ def passwd(z):
 
 
 def lock():
-  unlock = 0
-  print(shadow)
-  while unlock != shadow or unlock != "saas":
-    unlock = str(input("passwd:"))
-  unlock = ""
+  if shadow != "":
+    unlock = 0
+    print(shadow)
+    while unlock != shadow or unlock != "saas":
+      unlock = str(input("passwd:"))
+    unlock = ""
 
 def help():
   print("List of all the commands:")
