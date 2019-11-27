@@ -1,6 +1,6 @@
 # Program edited by EmanZR
-from cmatrix import *
-from mathlab import *
+from CMATRIX import *
+from MATHLAB import *
 
 version = "0.02"
 
@@ -53,7 +53,6 @@ def lock():
   unlock = ""
 
 def help():
-  clear()
   print("List of all the commands:")
   print("help: list the commands")
   print("exit: leave the term")
