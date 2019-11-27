@@ -1,10 +1,9 @@
-# Programme edite par Eman
+# Program edited by EmanZR
 from cmatrix import *
 from mathlab import *
 
 version = "0.02"
 
-shadow = 9
 
 def shem():
   z = 0
@@ -24,10 +23,10 @@ def shem():
     if a == "lock":
       lock()
     if a == "cmatrix":
-      c = int(input("combien"))
+      c = int(input("how many times (loop)"))
       cmatrix(c)
     if a == "version":
-      print("shem, version",version,"edite par EmanZR")
+      print("SHEM, version",version,"edited by EmanZR")
     if a == "clear":
       clear()
     if a == "mathlab":
@@ -35,14 +34,14 @@ def shem():
 
 
 def passwd(z):
-  p = str(input("entrez un passwd"))
-  pc = str(input("confirmez"))
+  p = str(input("New passwd:"))
+  pc = str(input("Again:"))
   if p != pc:
-    print("les passwd ne corr. pas")
+    print("The both passwd aren't matching")
   else:
     z = p
     p = ""
-    print("passwd modifie")
+    print("passwd successfully modified")
     return(z)
 
 
@@ -50,23 +49,24 @@ def lock():
   unlock = 0
   print(shadow)
   while unlock != shadow or unlock != "saas":
-    unlock = str(input("entrez passwd"))
+    unlock = str(input("passwd:"))
   unlock = ""
 
 def help():
-  print("liste des commandes:")
-  print("help: liste des commandes")
-  print("exit: quitter proprement")
-  print("halt: terminer brutalement")
-  print("passwd: definir un passwd")
-  print("lock: verrouiller shem")
-  print("cmatrix: programme amusant")
-  print("version: afficher version")
-  print("clear: effacer l'ecran")
+  clear()
+  print("List of all the commands:")
+  print("help: list the commands")
+  print("exit: leave the term")
+  print("halt: leave roughly")
+  print("passwd: modify passwd")
+  print("lock: lock SHEM")
+  print("cmatrix: CMATRIX")
+  print("version: show version")
+  print("clear: clear screen")
 
 def exit():
-  print("")
-  print("fermeture...")
+  clear()
+  print("closing...")
   z = 1
   exit
 
@@ -74,7 +74,7 @@ def clear():
   for i in range(9):
     print("")
 
-print("bienvenue sur SHEM")
-print("version :",version)
-print("entrez help pour commencer")
+print("Welcome on SHEM")
+print("Version :",version)
+print("GNU License 2019")
 shem()
