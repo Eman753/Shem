@@ -7,7 +7,7 @@ def mathlab():
   while term == 0:
     a = str(input("mathlab$: "))
     if a == "help":
-      print("help: liste des commandes")
-      print("halt: quitter brutalement")
+      print("help: list of commands")
+      print("halt: leave roughly")
     if a == "halt":
       term = 1

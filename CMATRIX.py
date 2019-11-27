@@ -1,3 +1,5 @@
+# Program edited by EmanZR. It is an adaptation of the package "CMATRIX" on Debian, which is also the name of our team in the CSAW'19
+
 def cmatrix(a):
   for i in range(a):
     print("R")
@@ -21,7 +23,3 @@ def cmatrix(a):
     print("                         ^")
     print("                          .")
     print("                            7")
-    
-#b = int(input("combien de series"))
-
-#cmatrix(b)
