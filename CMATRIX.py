@@ -1,0 +1,27 @@
+def cmatrix(a):
+  for i in range(a):
+    print("R")
+    print(" *")
+    print("  $")
+    print("   9")
+    print("     <")
+    print("      =")
+    print("        ~")
+    print("         M")
+    print("           Q")
+    print("            Z")
+    print("              `")
+    print("               @")
+    print("                 ]")
+    print("                  |")
+    print("                    #")
+    print("                     ]")
+    print("                      ;")
+    print("                       q")
+    print("                         ^")
+    print("                          .")
+    print("                            7")
+    
+#b = int(input("combien de series"))
+
+#cmatrix(b)
