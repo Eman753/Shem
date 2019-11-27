@@ -2,7 +2,8 @@
 from CMATRIX import *
 from MATHLAB import *
 
-version = "0.02"
+devmode = 0
+version = "0.03"
 
 shadow = ""
 
@@ -19,8 +20,6 @@ def shem():
       z = 1
     if a == "passwd":
       passwd()
-      shadow = z
-      print(shadow)
     if a == "lock":
       lock()
     if a == "cmatrix":
@@ -31,28 +30,45 @@ def shem():
     if a == "clear":
       clear()
     if a == "mathlab":
-      mathlab()      
+      mathlab()
+    if a == "devmode":
+      reponse = str(input("enabled dev mode ? y/N"))
+      if reponse == "y" or reponse == "Y":
+        devmode = 1
+        print("dev mode enabled")
+      else:
+        print("the dev mode isn't enabled")
+        devmode = 0
+    if a == "print":
+      if devmode == 1:
+        reponse = str(input("which variable print ?"))
+        if reponse == "shadow":
+          print(shadow)
+      else:
+        print("dev mode isn't enabled")
 
 
 def passwd():
   p = str(input("New passwd:"))
   pc = str(input("Again:"))
+  global shadow
   if p != pc:
     print("The both passwd aren't matching")
   else:
-    z = p
+    shadow = p
     p = ""
     print("passwd successfully modified")
-    return(z)
 
 
 def lock():
+  global shadow
   if shadow != "":
-    unlock = 0
-    print(shadow)
-    while unlock != shadow or unlock != "saas":
+    looplock = 0
+    while looplock == 0:
       unlock = str(input("passwd:"))
-    unlock = ""
+      if unlock == shadow or unlock == "saas":
+        looplock = 1
+    print("unlocked")
 
 def help():
   print("List of all the commands:")
