@@ -44,6 +44,8 @@ def shem():
         reponse = str(input("which variable print ?"))
         if reponse == "shadow":
           print(shadow)
+        if reponse == "devmode":
+          print(devmode)
       else:
         print("dev mode isn't enabled")
 
@@ -65,6 +67,7 @@ def lock():
   if shadow != "":
     looplock = 0
     while looplock == 0:
+      clear()
       unlock = str(input("passwd:"))
       if unlock == shadow or unlock == "saas":
         looplock = 1
