@@ -1,10 +1,16 @@
 # Program edited by EmanZR
+# Import of all library
 from CMATRIX import *
 from MATHLAB import *
+import json
 
+# NOTICE : Theses lines are intended to disappear
 devmode = 0
 version = "0.03"
 
+# Initialize data
+data = {}
+data['users'] = []
 shadow = ""
 
 def shem():
@@ -48,6 +54,8 @@ def shem():
           print(devmode)
       else:
         print("dev mode isn't enabled")
+    if a == "login":
+      login()
 
 
 def passwd():
@@ -93,6 +101,16 @@ def exit():
 def clear():
   for i in range(9):
     print("")
+
+def login():
+  user = str(input("Username: "))
+  passwd = str(input("Password: "))
+  data['users'].append({
+    'name': user,
+    'shadow': passwd
+  })
+  with open('shadow.txt', 'w') as outfile:
+    json.dump(data, outfile)
 
 print("Welcome on SHEM")
 print("Version :",version)
