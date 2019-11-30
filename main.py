@@ -13,3 +13,14 @@ print(y["name"])
 y = json.dumps(x)
 
 print(y)
+
+# Test JSON avec fichiers
+
+data = {}
+data['shadow'] = []
+data['shadow'].append({
+  'passwd': 'wow9'
+})
+
+with open('shadow.txt', 'w') as outfile:
+  json.dump(data, outfile)
