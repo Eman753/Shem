@@ -54,8 +54,8 @@ def shem():
           print(devmode)
       else:
         print("dev mode isn't enabled")
-    if a == "login":
-      login()
+    if a == "register":
+      register()
 
 
 def passwd():
@@ -102,7 +102,7 @@ def clear():
   for i in range(9):
     print("")
 
-def login():
+def register():
   user = str(input("Username: "))
   passwd = str(input("Password: "))
   data['users'].append({
