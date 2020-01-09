@@ -48,6 +48,8 @@ def shem():
           print(devmode)
       else:
         print("dev mode isn't enabled")
+    else:
+      print("please enter a existing command (type 'help' for help)")
 
 
 def passwd():
