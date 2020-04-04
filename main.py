@@ -120,6 +120,19 @@ def register():
 def login():
   user = str(input('Username:'))
   passwd = str(input('Password:'))
+  challengend = 0
+  while challengend == 0:
+    for i in data['users']:
+     if user == i['name']:
+       if passwd == i['shadow']:
+         print("Welcome",user)
+         challengend = 1
+         break
+       else:
+         print("Bad password")
+     else:
+      if challengend == 1:
+        print("Unknown user")
 #  for i in data:
 #    if i[0] == user:
 #      if i[1] == passwd:
@@ -128,13 +141,13 @@ def login():
 #        print("Bad password")
 #    else:
 #        print("Unknown user")
-  if user == data['users'][0]["name"]:
-    if passwd == data['users'][1]['shadow']:
-      print("Welcome"+user)
-    else:
-      print("Bad password")
-  else:
-    print("Unknown user")
+#  if user == data['users'][0]["name"]:
+#    if passwd == data['users'][1]['shadow']:
+#      print("Welcome"+user)
+#    else:
+#      print("Bad password")
+#  else:
+#    print("Unknown user")
 
 print("Welcome on SHEM")
 print("Version :",version)
