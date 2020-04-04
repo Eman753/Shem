@@ -14,12 +14,13 @@ data['users'] = []
 shadow = ""
 database = "shadow.txt"
 data = json.loads(open(database).read())
+user = ""
 print(data)
 
 def shem():
   z = 0
   while z == 0:
-    a = str(input("$: "))
+    a = str(input(user+"$: "))
     if a == "help":
       help()
     if a == "exit":
@@ -61,6 +62,8 @@ def shem():
       register()
     if a == "login":
       login()
+    if a == "logout":
+      logout()
 
 
 def passwd():
@@ -118,23 +121,33 @@ def register():
     json.dump(data, outfile)
 
 def login():
+  global user
   user = str(input('Username:'))
   passwd = str(input('Password:'))
-#  for i in data:
-#    if i[0] == user:
-#      if i[1] == passwd:
-#        print("Welcome"+user)
-#      else:
-#        print("Bad password")
-#    else:
-#        print("Unknown user")
-  if user == data['users'][0]["name"]:
-    if passwd == data['users'][1]['shadow']:
-      print("Welcome"+user)
-    else:
-      print("Bad password")
-  else:
-    print("Unknown user")
+  challengend = 0
+  while challengend == 0:
+    for i in data['users']:
+     if user == i['name']:
+       if passwd == i['shadow']:
+         print("Welcome",user)
+         challengend = 1
+         break
+       else:
+         print("Bad password")
+         challengend = 1
+         user = ""
+     else:
+      if challengend == 1:
+        print("Unknown user")
+        break
+        challengeng = 1
+        user = ""
+
+def logout():
+  global user
+  print("Bye",user+"!")
+  user = ""
+
 
 print("Welcome on SHEM")
 print("Version :",version)
