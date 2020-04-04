@@ -1,16 +1,26 @@
 # Program edited by EmanZR
+# Import of all library
 from CMATRIX import *
 from MATHLAB import *
+import json
 
+# NOTICE : Theses lines are intended to disappear
 devmode = 0
 version = "0.03"
 
+# Initialize data
+data = {}
+data['users'] = []
 shadow = ""
+database = "shadow.txt"
+data = json.loads(open(database).read())
+user = ""
+print(data)
 
 def shem():
   z = 0
   while z == 0:
-    a = str(input("$: "))
+    a = str(input(user+"$: "))
     if a == "help":
       help()
     if a == "exit":
@@ -48,6 +58,12 @@ def shem():
           print(devmode)
       else:
         print("dev mode isn't enabled")
+    if a == "register":
+      register()
+    if a == "login":
+      login()
+    if a == "logout":
+      logout()
 
 
 def passwd():
@@ -93,6 +109,45 @@ def exit():
 def clear():
   for i in range(9):
     print("")
+
+def register():
+  user = str(input("Username: "))
+  passwd = str(input("Password: "))
+  data['users'].append({
+    'name': user,
+    'shadow': passwd
+  })
+  with open('shadow.txt', 'w') as outfile:
+    json.dump(data, outfile)
+
+def login():
+  global user
+  user = str(input('Username:'))
+  passwd = str(input('Password:'))
+  challengend = 0
+  while challengend == 0:
+    for i in data['users']:
+     if user == i['name']:
+       if passwd == i['shadow']:
+         print("Welcome",user)
+         challengend = 1
+         break
+       else:
+         print("Bad password")
+         challengend = 1
+         user = ""
+     else:
+      if challengend == 1:
+        print("Unknown user")
+        break
+        challengeng = 1
+        user = ""
+
+def logout():
+  global user
+  print("Bye",user+"!")
+  user = ""
+
 
 print("Welcome on SHEM")
 print("Version :",version)
