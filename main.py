@@ -12,6 +12,9 @@ version = "0.03"
 data = {}
 data['users'] = []
 shadow = ""
+database = "shadow.txt"
+data = json.loads(open(database).read())
+print(data)
 
 def shem():
   z = 0
@@ -56,6 +59,8 @@ def shem():
         print("dev mode isn't enabled")
     if a == "register":
       register()
+    if a == "login":
+      login()
 
 
 def passwd():
@@ -111,6 +116,25 @@ def register():
   })
   with open('shadow.txt', 'w') as outfile:
     json.dump(data, outfile)
+
+def login():
+  user = str(input('Username:'))
+  passwd = str(input('Password:'))
+#  for i in data:
+#    if i[0] == user:
+#      if i[1] == passwd:
+#        print("Welcome"+user)
+#      else:
+#        print("Bad password")
+#    else:
+#        print("Unknown user")
+  if user == data['users'][0]["name"]:
+    if passwd == data['users'][1]['shadow']:
+      print("Welcome"+user)
+    else:
+      print("Bad password")
+  else:
+    print("Unknown user")
 
 print("Welcome on SHEM")
 print("Version :",version)
