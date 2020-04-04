@@ -24,6 +24,7 @@ def shem():
     if a == "help":
       help()
     if a == "exit":
+      logout()
       exit()
       z = 1
     if a == "halt":
