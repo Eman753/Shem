@@ -6,7 +6,7 @@ import json
 
 # NOTICE : Theses lines are intended to disappear
 devmode = 0
-version = "0.03"
+version = "0.04"
 
 # Initialize data
 data = {}
@@ -125,6 +125,8 @@ def login():
   user = str(input('Username:'))
   passwd = str(input('Password:'))
   challengend = 0
+  exit = 0
+# This loop checks if the username and the password match, and if they exist.
   while challengend == 0:
     for i in data['users']:
      if user == i['name']:
@@ -138,10 +140,14 @@ def login():
          user = ""
      else:
       if challengend == 1:
-        print("Unknown user")
-        break
         challengeng = 1
+        break
         user = ""
+    exit = exit+1
+# Limit of 64 accounts. If the username is incorrect, the following condition will permit to escape the infinite loop.
+    if exit == 64:
+      challengend = 1
+      user = ""
 
 def logout():
   global user
@@ -151,5 +157,5 @@ def logout():
 
 print("Welcome on SHEM")
 print("Version :",version)
-print("GNU License 2019")
+print("GNU License 2020")
 shem()
