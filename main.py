@@ -62,6 +62,8 @@ def shem():
       register()
     if a == "login":
       login()
+    if a == "logout":
+      logout()
 
 
 def passwd():
@@ -140,6 +142,11 @@ def login():
         break
         challengeng = 1
         user = ""
+
+def logout():
+  global user
+  print("Bye",user+"!")
+  user = ""
 
 
 print("Welcome on SHEM")
