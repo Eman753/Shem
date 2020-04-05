@@ -15,7 +15,7 @@ database = "shadow.txt"
 data = json.loads(open(database).read())
 user = ""
 passwd = ""
-print(data)
+#print(data)
 
 def shem():
   z = 0
