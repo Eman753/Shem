@@ -6,15 +6,15 @@ import json
 
 # NOTICE : Theses lines are intended to disappear
 devmode = 0
-version = "0.03"
+version = "0.04"
 
 # Initialize data
 data = {}
 data['users'] = []
-shadow = ""
 database = "shadow.txt"
 data = json.loads(open(database).read())
 user = ""
+passwd = ""
 print(data)
 
 def shem():
@@ -24,12 +24,11 @@ def shem():
     if a == "help":
       help()
     if a == "exit":
+      logout()
       exit()
       z = 1
     if a == "halt":
       z = 1
-    if a == "passwd":
-      passwd()
     if a == "lock":
       lock()
     if a == "cmatrix":
@@ -66,26 +65,14 @@ def shem():
       logout()
 
 
-def passwd():
-  p = str(input("New passwd:"))
-  pc = str(input("Again:"))
-  global shadow
-  if p != pc:
-    print("The both passwd aren't matching")
-  else:
-    shadow = p
-    p = ""
-    print("passwd successfully modified")
-
-
 def lock():
-  global shadow
-  if shadow != "":
+  global passwd
+  if passwd != "":
     looplock = 0
     while looplock == 0:
       clear()
       unlock = str(input("passwd:"))
-      if unlock == shadow or unlock == "saas":
+      if unlock == passwd or unlock == "saas":
         looplock = 1
     print("unlocked")
 
@@ -94,8 +81,10 @@ def help():
   print("help: list the commands")
   print("exit: leave the term")
   print("halt: leave roughly")
-  print("passwd: modify passwd")
-  print("lock: lock SHEM")
+  print("register: add an account in db")
+  print("login: log to your account")
+  print("logout: exit your account")
+  print("lock: lock with your passwd")
   print("cmatrix: CMATRIX")
   print("version: show version")
   print("clear: clear screen")
@@ -122,9 +111,12 @@ def register():
 
 def login():
   global user
+  global passwd
   user = str(input('Username:'))
   passwd = str(input('Password:'))
   challengend = 0
+  exit = 0
+# This loop checks if the username and the password match, and if they exist.
   while challengend == 0:
     for i in data['users']:
      if user == i['name']:
@@ -138,18 +130,31 @@ def login():
          user = ""
      else:
       if challengend == 1:
-        print("Unknown user")
-        break
         challengeng = 1
+        break
         user = ""
+    exit = exit+1
+# Limit of 64 accounts. If the username is incorrect, the following condition will permit to escape the infinite loop.
+    if exit == 64:
+      challengend = 1
+      user = ""
 
 def logout():
   global user
+  global passwd
   print("Bye",user+"!")
   user = ""
+  passwd = ""
+
+#def deluser():
+#  userdel = str(input("Username:"))
+#  passwddel = str(input("Password:"))
+#  login(userdel,passwddel)
+#  if user == userddel AND passwd == passwddel:
+    
 
 
 print("Welcome on SHEM")
 print("Version :",version)
-print("GNU License 2019")
+print("GNU License 2020")
 shem()
