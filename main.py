@@ -11,10 +11,10 @@ version = "0.04"
 # Initialize data
 data = {}
 data['users'] = []
-shadow = ""
 database = "shadow.txt"
 data = json.loads(open(database).read())
 user = ""
+passwd = ""
 print(data)
 
 def shem():
@@ -29,8 +29,6 @@ def shem():
       z = 1
     if a == "halt":
       z = 1
-    if a == "passwd":
-      passwd()
     if a == "lock":
       lock()
     if a == "cmatrix":
@@ -67,26 +65,14 @@ def shem():
       logout()
 
 
-def passwd():
-  p = str(input("New passwd:"))
-  pc = str(input("Again:"))
-  global shadow
-  if p != pc:
-    print("The both passwd aren't matching")
-  else:
-    shadow = p
-    p = ""
-    print("passwd successfully modified")
-
-
 def lock():
-  global shadow
-  if shadow != "":
+  global passwd
+  if passwd != "":
     looplock = 0
     while looplock == 0:
       clear()
       unlock = str(input("passwd:"))
-      if unlock == shadow or unlock == "saas":
+      if unlock == passwd or unlock == "saas":
         looplock = 1
     print("unlocked")
 
@@ -95,8 +81,10 @@ def help():
   print("help: list the commands")
   print("exit: leave the term")
   print("halt: leave roughly")
-  print("passwd: modify passwd")
-  print("lock: lock SHEM")
+  print("register: add an account in db")
+  print("login: log to your account")
+  print("logout: exit your account")
+  print("lock: lock with your passwd")
   print("cmatrix: CMATRIX")
   print("version: show version")
   print("clear: clear screen")
@@ -123,6 +111,7 @@ def register():
 
 def login():
   global user
+  global passwd
   user = str(input('Username:'))
   passwd = str(input('Password:'))
   challengend = 0
@@ -152,8 +141,17 @@ def login():
 
 def logout():
   global user
+  global passwd
   print("Bye",user+"!")
   user = ""
+  passwd = ""
+
+#def deluser():
+#  userdel = str(input("Username:"))
+#  passwddel = str(input("Password:"))
+#  login(userdel,passwddel)
+#  if user == userddel AND passwd == passwddel:
+    
 
 
 print("Welcome on SHEM")
