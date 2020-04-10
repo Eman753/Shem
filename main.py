@@ -18,6 +18,7 @@ passwd = ""
 #print(data)
 
 def shem():
+  global z
   z = 0
   while z == 0:
     a = str(input(user+"$: "))
@@ -26,7 +27,6 @@ def shem():
     if a == "exit":
       logout()
       exit()
-      z = 1
     if a == "halt":
       z = 1
     if a == "lock":
@@ -90,6 +90,7 @@ def help():
   print("clear: clear screen")
 
 def exit():
+  global z
   clear()
   print("closing...")
   z = 1
