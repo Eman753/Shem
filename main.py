@@ -37,6 +37,7 @@ def shem():
       cmatrix(c)
     if a == "version":
       print("SHEM, version",version,"edited by EmanZR")
+      print("Any problem ? shem@ckrom.viewdns.net")
     if a == "clear":
       clear()
     if a == "mathlab":
