@@ -6,7 +6,7 @@ import json
 
 # NOTICE : Theses lines are intended to disappear
 devmode = 0
-version = "0.04"
+version = "0.04a"
 
 # Initialize data
 data = {}
