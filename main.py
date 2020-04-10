@@ -20,6 +20,7 @@ passwd = ""
 def shem():
   global z
   z = 0
+  print('Type "help" for help')
   while z == 0:
     a = str(input(user+"$: "))
     if a == "help":
