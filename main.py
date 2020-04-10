@@ -6,7 +6,7 @@ import json
 
 # NOTICE : Theses lines are intended to disappear
 devmode = 0
-version = "0.04"
+version = "0.04a"
 
 # Initialize data
 data = {}
@@ -18,7 +18,9 @@ passwd = ""
 #print(data)
 
 def shem():
+  global z
   z = 0
+  print('Type "help" for help')
   while z == 0:
     a = str(input(user+"$: "))
     if a == "help":
@@ -26,7 +28,6 @@ def shem():
     if a == "exit":
       logout()
       exit()
-      z = 1
     if a == "halt":
       z = 1
     if a == "lock":
@@ -36,6 +37,7 @@ def shem():
       cmatrix(c)
     if a == "version":
       print("SHEM, version",version,"edited by EmanZR")
+      print("Any problem ? shem@ckrom.viewdns.net")
     if a == "clear":
       clear()
     if a == "mathlab":
@@ -90,6 +92,7 @@ def help():
   print("clear: clear screen")
 
 def exit():
+  global z
   clear()
   print("closing...")
   z = 1
