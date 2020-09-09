@@ -133,7 +133,7 @@ def login():
          user = ""
      else:
       if challengend == 1:
-        challengeng = 1
+        challengend = 1
         break
         user = ""
     exit = exit+1
@@ -141,6 +141,7 @@ def login():
     if exit == 64:
       challengend = 1
       user = ""
+      print("Bad username")
 
 def logout():
   global user
