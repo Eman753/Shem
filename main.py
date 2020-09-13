@@ -4,8 +4,6 @@ from CMATRIX import *
 from MATHLAB import *
 import json
 
-# NOTICE : Theses lines are intended to disappear
-devmode = 0
 version = "0.04b"
 
 # Initialize data
@@ -15,7 +13,7 @@ database = "shadow.txt"
 data = json.loads(open(database).read())
 user = ""
 passwd = ""
-#print(data)
+devmode = 0
 
 def shem():
   global z
@@ -42,19 +40,11 @@ def shem():
       clear()
     if a == "mathlab":
       mathlab()
-    if a == "devmode":
-      reponse = str(input("enabled dev mode ? y/N"))
-      if reponse == "y" or reponse == "Y":
-        devmode = 1
-        print("dev mode enabled")
-      else:
-        print("the dev mode isn't enabled")
-        devmode = 0
     if a == "print":
       if devmode == 1:
         reponse = str(input("which variable print ?"))
-        if reponse == "shadow":
-          print(shadow)
+        if reponse == "passwd":
+          print(passwd)
         if reponse == "devmode":
           print(devmode)
       else:
@@ -116,6 +106,7 @@ def register():
     data['users'].append({
       'name': user,
       'shadow': passwd,
+      'dev': ""
     })
   with open('shadow.txt', 'w') as outfile:
     json.dump(data, outfile)
@@ -123,6 +114,7 @@ def register():
 def login():
   global user
   global passwd
+  global devmode
   user = str(input('Username:'))
   passwd = str(input('Password:'))
   dev = "SaaS"
@@ -134,9 +126,10 @@ def login():
      if user == i['name']:
        if passwd == i['shadow']:
          print("Welcome",user)
-         if dev == i['dev']:
-           devmode = 1
-           print("Welcome developper")
+         if dev != "":
+          if dev == i['dev']:
+            devmode = 1
+            print("Welcome developper")
          challengend = 1
          break
        else:
