@@ -105,10 +105,18 @@ def clear():
 def register():
   user = str(input("Username: "))
   passwd = str(input("Password: "))
-  data['users'].append({
-    'name': user,
-    'shadow': passwd
-  })
+  dev = str(input("Dev-word?:"))
+  if dev == "SaaS":
+    data['users'].append({
+      'name': user,
+      'shadow': passwd,
+      'dev': dev
+    })
+  else:
+    data['users'].append({
+      'name': user,
+      'shadow': passwd,
+    })
   with open('shadow.txt', 'w') as outfile:
     json.dump(data, outfile)
 
@@ -117,6 +125,7 @@ def login():
   global passwd
   user = str(input('Username:'))
   passwd = str(input('Password:'))
+  dev = "SaaS"
   challengend = 0
   exit = 0
 # This loop checks if the username and the password match, and if they exist.
@@ -125,6 +134,9 @@ def login():
      if user == i['name']:
        if passwd == i['shadow']:
          print("Welcome",user)
+         if dev == i['dev']:
+           devmode = 1
+           print("Welcome developper")
          challengend = 1
          break
        else:
